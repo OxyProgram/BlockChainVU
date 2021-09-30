@@ -18,6 +18,7 @@ uint32_t operation1(uint32_t word);
 uint32_t operation2(uint32_t word);
 uint32_t operation3(uint32_t input1, uint32_t input2, uint32_t input3);
 uint32_t operation4(uint32_t input1, uint32_t input2, uint32_t input3);
+string convertToString(uint32_t h[]);
 
 class Hash {
 
@@ -182,6 +183,11 @@ string Hash::generateHash(const string& input) {
         } 
     }
 
+    return convertToString(h);
+
+}
+
+string convertToString(uint32_t h[]) {
     string output = "";
     for (int i = 0; i < 8; ++i) {
         bitset<32> word(h[i]);
@@ -199,9 +205,7 @@ string Hash::generateHash(const string& input) {
 
 
     }
-
     return output;
-
 }
 
 uint32_t operation1(uint32_t input) {
