@@ -23,6 +23,7 @@ void test1();
 void test2();
 void test3();
 void test4();
+void test5();
 void collisionTest();
 string gen_random(const int lenght);
 
@@ -30,9 +31,23 @@ int main(int argc, char *argv[]) {
 
     Hash hash;
     string input = *argv;
-    string hashString = hash.generateHash(input);
-    cout << hashString << endl;
-    runAnalysis();
+
+    cout << "Pasirinkite ivesties buda:  " << endl;
+    cout << "1. Is isorinio failo\n 2. Ivesti ranka\n 3. Vykdyti analize" << endl;
+    char c;
+    cin >> c;
+    if (c == '1') {
+        string hashString = hash.generateHash(input);
+        cout << hashString + "\n" << endl;
+    }
+    if (c == '2') {
+        string s;
+        cin >> s;
+        cout << hash.generateHash(s) + "\n" << endl;
+    }
+    if(c == '3') {
+        runAnalysis();
+    }
 
 }
 
@@ -45,15 +60,17 @@ void runAnalysis() {
     generateFile3("file5.txt");       //Generates a file with a strings with one unique character appended
     generateFile3("file6.txt");       //Generates a file with a strings with one unique character appended
 
-    test1();
-    test2();
-    test3();
-    test4();
-    collisionTest();
+    test1();  //Input can be of any size
+    test2();  //Output will always be 64 character hex
+    test3();  //Function is deterministic
+    test4();  //Hash'ing konstitucija.txt
+    collisionTest();  //Collision test
+    test5();  //Changing input slightly generates vastly different result
 
 }
 
 void test1() {
+
     bool a = validateInputCanBeOfAnyLength("file1.txt");
     bool b = validateInputCanBeOfAnyLength("file2.txt");
     if(a || b) {
@@ -86,6 +103,27 @@ void test3() {
         return;
     }
     cout << "3 test successfull!" << endl;
+}
+
+void test5() {
+
+    Hash hash;
+
+    string s1 = "aaaaaaaaaaaaaaaaaaaa";
+    string s2 = "Aaaaaaaaaaaaaaaaaaaa";
+    string s3 = "aaaaaaaaaaaaaaaaaaaa!";
+    string h1 = hash.generateHash(s1);
+    string h2 = hash.generateHash(s2);
+    string h3 = hash.generateHash(s3);
+
+    cout << "---------------------------------------------------" << endl;
+    cout << "Input                   |      Output" << endl;
+    cout << "---------------------------------------------------" << endl;
+    cout << s1 + "    | " + h1 << endl;
+    cout << s2 + "    | " + h2 << endl;
+    cout << s3 + "    | " + h3 << endl;
+    cout << "---------------------------------------------------" << endl;
+
 }
 
 bool validateInputCanBeOfAnyLength(string fileName) {
@@ -163,14 +201,14 @@ void collisionTest() {
     Hash hash;
     string s1, s2;
     int i = 0;
-    for(int i = 0; i < 10000; i++) {
+    for(int i = 0; i < 100000; i++) {
         s1 = gen_random(6);
         s2 = gen_random(6);
         if(hash.generateHash(s1).compare(hash.generateHash(s2))) {
             i++;
         }
     }
-    cout << to_string(i) + " collisions detected out of 10000 pairs" << endl;
+    cout << to_string(i) + " collisions detected out of 100 000 pairs" << endl;
 
 }
 
