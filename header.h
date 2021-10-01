@@ -36,27 +36,7 @@ Hash::~Hash() {
 
 }
 
-deque<bitset<8> > convertStringToBits(const string& input) {
-    deque<bitset<8> > stringTo8Bits;
-
-    if(input.length() == 0)
-        stringTo8Bits.push_back(bitset<8>(0));
-
-    for (size_t i = 0; i < input.size(); ++i)
-    {
-        stringTo8Bits.push_back(bitset<8>(input.c_str()[i]));
-    }
-    stringTo8Bits.push_back(bitset<8>(128));
-    for(int i = stringTo8Bits.size(); i < 56; i++) {
-        stringTo8Bits.push_back(bitset<8>(0));
-    }
-    return stringTo8Bits;
-}
-
-
-
-
- deque<uint32_t> generateMessageSchedule(deque<deque<uint32_t> > wordBlocks) {
+deque<uint32_t> generateMessageSchedule(deque<deque<uint32_t> > wordBlocks) {
     deque<uint32_t> message;
 
     for(int i = 0; i < wordBlocks.size(); ++i) {
