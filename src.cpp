@@ -71,16 +71,25 @@ void runAnalysis() {
 
 void test1() {
 
-    bool a = validateInputCanBeOfAnyLength("file1.txt");
-    bool b = validateInputCanBeOfAnyLength("file2.txt");
-    if(a || b) {
-        cout << "1 test UNsuccessfull!" << endl;
-        return;
-    }
-    cout << "1 test successfull!" << endl;
+    string s, o;
+    Hash hash;
+
+    cout << "1. Input can be of any size:" << endl;
+    s = gen_random(0);
+    o = hash.generateHash(s);
+    s = gen_random(1);
+    o = hash.generateHash(s);
+    s = gen_random(1000);
+    o = hash.generateHash(s);
+    s = gen_random(10000);
+    o = hash.generateHash(s);
+    cout << "Hash function can take a randon string input with character count from 0 to 10000\n" << endl;
+    
 }
 
 void test2() {
+
+    cout << "2. Output will always be 64 character hex:\n" << endl;
     bool a = validateOutputLenght("file1.txt");
     bool b = validateOutputLenght("file2.txt");
     bool c = validateOutputLenght("file3.txt");
@@ -92,9 +101,11 @@ void test2() {
         return;
     }
     cout << "2 test successfull!" << endl;
+    cout << "Hash function returnd 64 character hex from input size (0, 1000)\n" << endl;
 }
 
 void test3() {
+    cout << "3. Function is deterministic:\n" << endl;
     bool a = functionIsDeterministic("file1.txt");
     bool b = functionIsDeterministic("file2.txt");
 
@@ -103,15 +114,18 @@ void test3() {
         return;
     }
     cout << "3 test successfull!" << endl;
+    cout << "Functions always returns the same output for input 'a'/'b'\n" << endl;
 }
 
 void test5() {
+
+    cout << "6. Slightly modifying the input vastly changes the output\n" << endl;
 
     Hash hash;
 
     string s1 = "aaaaaaaaaaaaaaaaaaaa";
     string s2 = "Aaaaaaaaaaaaaaaaaaaa";
-    string s3 = "aaaaaaaaaaaaaaaaaaaa!";
+    string s3 = "a!aaaaaaaaaaaaaaaaaaa";
     string h1 = hash.generateHash(s1);
     string h2 = hash.generateHash(s2);
     string h3 = hash.generateHash(s3);
@@ -181,6 +195,8 @@ bool functionIsDeterministic(string fileName) {
 
 void test4() {
 
+
+    cout << "4. Function is fairly efficient:\n" << endl;
     Hash hash;
     ifstream in("konstitucija.txt");
     string s, t;
@@ -191,13 +207,14 @@ void test4() {
     }
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     int diff = std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count();
-    cout << "test 4 took " + to_string(diff) + " ms" << endl;
+    cout << "test 4 took " + to_string(diff) + " ms\n" << endl;
     in.close();
 
 }
 
 void collisionTest() {
 
+    cout << "5. Collision test\n" << endl;
     Hash hash;
     string s1, s2;
     int i = 0;
