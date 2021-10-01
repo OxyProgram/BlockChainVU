@@ -9,7 +9,7 @@ Funkcijos analizė:
 
 1.Funkcijos įvestis gali būti bet kokio dydžio:
 
-Testas: funkcija sugeneruoja Hash string kai simbolių eilutėje yra nuo 0 iki 1 000 000;
+Testas: funkcija sugeneruoja Hash string kai simbolių eilutėje yra nuo 0 iki 100 000;
 
 2. Funkcijos įšvestis visada bus 64 simbolių hex'as
 
@@ -17,7 +17,7 @@ Testas: funkcija sugeneruoja Hash string, kuris yra 64 simbolių hex'as, kai sim
 
 3. Funkcija yra deterministinė:
 
-Testas: funkcija sugeneruoja tą patį Hash string elementui "a"/"b" 1000;
+Testas: funkcija sugeneruoja tą patį Hash string elementui "a"/"b" 1000 kartų;
 
 4. Funkcija veikia greitai
 
@@ -29,4 +29,5 @@ Testas: sugeneruota 100 000 porų, kuriuose yra skirtingos simbolių eilutės. A
 
 6. Pakeitus įvesti minimaliai gaunamas visiškai kitas rezultatas
 
-Testas: <img width="659" alt="Screenshot 2021-10-01 at 01 30 30" src="https://user-images.githubusercontent.com/75229680/135538572-cefc2cd7-e86f-496a-ae4e-892fa9a56640.png">
+Testas: <img width="664" alt="Screenshot 2021-10-01 at 10 12 10" src="https://user-images.githubusercontent.com/75229680/135580105-f735715f-6e02-4229-bb4d-a3423971943d.png">
+
